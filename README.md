@@ -49,9 +49,10 @@ Finally, a couple of key Web capabilites are evident in this basic demo: __typed
 If you worked through the demo in the last section, you have a file on your computer at ~/pptest/src/clj/pptest/handler.clj. This file (or some Clojure file refactored out of it) is where I anticipate most of your development will take place, so taking it apart is a good next step in explaining Porpus.
 
 Skipping past some boilerplate stuff that won't change much, we find the following around line 25:
-    ["/buttontest"
-     {:get {
-      :handler (fn [stuff]
+
+     ["/buttontest"
+      {:get {
+       :handler (fn [stuff]
         {:status 200
          :headers {"Content-Type" "text/html"}
          :body (html5 (head)
