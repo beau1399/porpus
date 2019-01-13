@@ -6,7 +6,13 @@
 * Tight development loop
 * __A quick path to making what you want to make__
 
-This document begins by describing how to generate a Porpus site, which comes complete with examples of how to do basic Web development tasks which you can clone and extend. This demonstration is intended to serve as a self-contained tutorial that will have you doing Web development in Clojure very quickly, and it assumes only a basic understanding of how Web applications in general work, along with knowledge of basic Clojure data structures and function call syntax.
+More specfically:
+* Reitit for routing and parameter coercion
+* Figwheel for ClojureScript reloading
+* Ring for Clojure reloading
+* Hiccup for HTML generation
+
+This document begins by describing how to generate a Porpus site, which comes complete with examples of how to do basic Web development tasks for you to clone and extend. This is intended to serve as a self-contained tutorial that will have you doing Web development quickly. It assumes only a basic understanding of how Web applications in general work, along with knowledge of basic Clojure data structures and function call syntax.
 
 ## Quick Start
 
@@ -52,7 +58,7 @@ Finally, a couple of key Web capabilites are evident in this basic demo: __typed
 
 ### Page "buttontest"
 
-If you worked through the demo in the last section, you have a file on your computer at ~/pptest/src/clj/pptest/handler.clj. This file (or some Clojure file refactored out of it) is where I anticipate most of your development will take place, so taking it apart is a good next step in explaining Porpus.
+If you worked through the demo in the last section, you have a file on your computer at ~/pptest/src/clj/pptest/handler.clj. This file (or Clojure file(s) refactored out of it) is where I anticipate most of your development will take place, so taking it apart is a good next step in explaining Porpus.
 
 Skipping past some boilerplate stuff that won't change much, we find the following around line 25:
 
@@ -64,7 +70,7 @@ Skipping past some boilerplate stuff that won't change much, we find the followi
          :body (html5 (head)
 	   [:button {:onclick "pptest.core.greet()"} "Say hi"]  (include-js "/js/app.js"))})}}]
 	   
-What we see here is the Reitit route definition for page http://localhost:3449/buttontest. Such routes consist of a vector containing a route string ("/buttontest") and then a hash map that establishes how the route should be handled. 
+What we see here is the [Reitit](https://github.com/metosin/reitit) route definition for page http://localhost:3449/buttontest. Such routes consist of a vector containing a route string ("/buttontest") and then a hash map that establishes how the route should be handled. 
 
 The outer hash map for the route ties keyword ":get" (the HTTP verb supported here) to a nested map. In this simple example, the nested map need only define a value for keyword ":handler", which is tasked with generating and returning yet another map that gives all of the data about the HTTP response.
 
