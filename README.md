@@ -40,6 +40,8 @@ This section will give you a quick path to a Porpus Web site, and show you what 
 
 9. Browse to http://localhost:3449/buttontest and click the "Say hi" button. You will see an alert dialog.
 
+10. Browse to http://localhost:3449:/formtest, enter some text into the text box, and press the "OK" button. The page will post back to the server and return another page that uses your input in a message.
+
 From this little demo, a few pieces of information about Porpus can be gleaned. First, note that __most of the action takes place on the server side.__ Things like React, the single-page architecture, etc. are not a part of Porpus, at least not out of the box.
 
 Second, realize that this server-centric design does not prevent scripting from happening, as evidenced by the (__ClojureScript-driven__) alert dialog seen in step 9. 
@@ -122,7 +124,7 @@ Beyond that, little new remains to explain other than how the handler function's
      
 and the declaration above will place the value ("value of the parameter" above, an integer when the route is correctly used) into handler function parameter "n". This handler function parameter is inserted into a span in the response body, to achieve the effect seen in the demo.
 
-## Pages "seshtest" and "seshtest2"
+### Pages "seshtest" and "seshtest2"
 
 The route for "/seshtest" is found after the one for "/parmtest" and looks like this:
 
@@ -131,6 +133,8 @@ The route for "/seshtest" is found after the one for "/parmtest" and looks like 
                               {:status 200 :headers {"Content-Type" "text/html"}
                                :session (assoc session :markuse (inc (:markuse session 0)))
                                :body (html5 (head)[:body [:span (:markuse session 0)]])})}}]
+
+The route declaration for "/seshtest2" is identical except for the initial string. It exists to demonstrate the cross-page nature of the session facility.
 
 First, take note of the parameter list for the handler function. Here, destructuring is used to extract the value of key ":session" of the request object into a parameter called "session". This itself is a hash map, and the key used for the incrementing counter evident on "seshtest" and "seshtest2" is named "markuse".
 
@@ -150,8 +154,36 @@ This is addressed by creating a single session store, using the following line o
      
 Much farther down in handler.clj, this is integrated into the middleware of the Reitit route map.
 
-## Page "formtest"
+### Page "formtest"
 
+The definition of route "/formtest" is different from those seen previously in its use of both a ":get" key/value pair and a ":post" key/value pair:
+
+    ["/formtest"
+      {:get {:coercion reitit.coercion.spec/coercion             
+             :handler (fn [requestobj]
+                    {:status 200
+                     :headers {"Content-Type" "text/html"}
+                     :body (html5 (head)
+			  [:form { :method "post" :action "/formtest"}
+			   [:input {:name "username"}]
+			   [:input {:type "submit" :value "OK"}]])})}
+       :post {:parameters {:body {:username string?}}
+              :handler (fn  [{ {u :username} :params session :session ip :remote-addr}]
+               {:status 200
+                :headers {"Content-Type" "text/html"}
+                :body (html5 (head) [:span (str "Hi, " u " from " ip ".")])})}}]
+
+The same ":coercion" value as seen in the "/parmtest" route is evident here. Though the parameter(s) for a POST will be passed in the request body, not its query string, the same Reitit library code will handle it. One thing to remember is that the ":coercion" pair goes on the handler for GET. This may seem somewhat counterintuitive, in that it is the POST that ultimately has expectations for the typing of the parameter, but this is just how Reitit coercion operates.
+
+The GET handler is straightforward. Its handler accepts the single request object parameter; note that Reitit expects to pass this in, if nothing else, and omitting it will cause problems. The handler goes on to render a simple form that accepts a single piece of data and performs a POST back to the same route. 
+
+The POST parameter is more complex in the parameters it expects to receive. As seen in "/parmtest", the ":params" member of the request object is destructured to get the desired parameter. I've named the parameter "u", but the relevant key in the ":params" map is ":username", which is derived from the "name" attribute of the form input. 
+
+The ":session" member of the request object is also accepted, as seen in the "/seshtest" route. It is not used in the example code above, but is included in recognition of the fact that a user's session data will often be relevant to anything he or she attempts to post. One might not want to allow a user to POST a checkout request on a commerce site without an authenticated session, for example.
+
+Note that session is not included in the response here. This is acceptable since it is not actually modfied.
+
+A new key/value pair in the destructured parameter declaration is "ip." This _is_ parroted back in the HTML returned by the POST handler, and is mostly included just to show how one obtains the IP address within the Porpus ecosystem.
 
 ## Porpus Design in Depth
 
@@ -179,7 +211,7 @@ These are good things. I am no Kernighan, Ritchie, or Hickey, but [even I, when 
 
 That is, I suspect, our future. Even if Clojure doesn't match people's preconceptions of a "low-level language," I am convinced that it's a less awkward abstraction of today's hardware than many languages that do match those preconceptions.
 
-### The Banality of Dumpster Diving
+### The Clojure Learning Curve
 
 If we allow that the argument made in the last section is plausible, and that Clojure is a valid, even inevitable direction for Web development, then an obvious question presents itself: why are people using other things instead? 
 
@@ -209,7 +241,15 @@ Paraphrasing, this advice tells us to learn a fair amount of syntax without atte
 
 In other words, prepare yourself to work brain-teasers in something resembling a VT-100 session for a good while before you even try and decide what your real toolset will look like. __This is all very solid advice in its own way, but reading it, is there any wonder so many people throw up their hands and just decide to keep writing dubious Java?__
 
-Reading through this pastiche of 
+### The Banality of Dumpster Diving
+
+How can this imposing list of things to learn be pared back? Unlike the Figwheel Web site, I do not recommend hiding away exclusively in the REPL for a prolonged period of time unless you really do (as they suggest) find that "fun." 
+
+To draw an analogy, waxing cars and paiting fences can segue neatly into winning a karate tournament in the movies, but I don't think such transitions are that easy in real life. In real life, if you want to win a karate tournament, you should probably start punching and kicking things well in advance of the first round of competition.
+
+More to the point, I followed the Figwheel people's recommendation for quite a while, dutifully constructing things like prime number generators and trampolining function pairs in the REPL for a few months. 
+
+So I do not suggest that learning Clojure ought to involve giving up on making something tangible and useful in a reasonable amount of time. 
 
 
 
