@@ -6,7 +6,7 @@
 * Tight development loop
 * __A quick path to making what you want to make__
 
-This document begins by describing how to generate a Porpus site, and then explains how to do the most basic Web development tasks for such a site. It is intended to serve as a self-contained tutorial that will have you doing Web development in Clojure very quickly, and it assumes only a basic understanding of how Web applications in general work and knowledge of basic Clojure data structures and function call syntax.
+This document begins by describing how to generate a Porpus site, which comes complete with examples of how to do basic Web development tasks which you can clone and extend. This demonstration is intended to serve as a self-contained tutorial that will have you doing Web development in Clojure very quickly, and it assumes only a basic understanding of how Web applications in general work, along with knowledge of basic Clojure data structures and function call syntax.
 
 ## Quick Start
 
