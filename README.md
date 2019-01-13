@@ -1,15 +1,15 @@
 # Porpus - A Minimalist Leiningen Template for Web Development
-* Server-Driven
-* ClojureScript enabled for when you need it
-* Suspicious of dependencies
-* Built around the basics; HTTP is the framework...
+* Server-Driven...
+* But ClojureScript enabled for when you need it
+* Suspicious of dependencies; HTTP is the framework...
 * But "batteries" are nevertheless included
-* Tight development loop
-* __Friendly learning curve__
+* Developer-friendly:
+*  Tight development loop
+*  __Friendly learning curve__
 
 ## Quick Start
 
-This section will give you a quick path to a Porpus Web site, and show you what Porpus is and isn't. If you prefer to read about the design and intent of Porpus in greater depth, skip to the next section. Otherwise, go ahead and follow these steps:
+This section will give you a quick path to a Porpus Web site, and show you what Porpus is and isn't. If you prefer to read about the design and intent of Porpus in greater depth, skip to the third major section of this document ("Porpus Design in Depth") and read that first. Otherwise, go ahead and follow these steps:
 
 1. Get the Porpus repository onto your system
 	cd ~
@@ -51,9 +51,8 @@ Finally, a couple of key Web capabilites are evident in this basic demo: __typed
 
 Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
 
-__1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.__
-
-__2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development__
+__1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.
+2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development__
 
 ### The Power of Clojure
 
@@ -68,3 +67,18 @@ Consider the computer you are probably reading this on. It probably has a CPU th
 Over time this compromised engineering will only grow leakier in its abstractions, more prone to nasty surprises, and overall less sustainable. There is a need for the engineering of software to better harmonize with the engineering of hardware. 
 
 ### The Banality of Dumpster Diving
+
+
+http://beauscode.blogspot.com/2013/02/language-and-development-tool-for.html
+ inherent side effects like i/o
+ less fundamental side effects like variable assignment
+
+
+
+
+what if learning C meant also learning... CS education
+
+Tight dev loop
+Batteries included
+
+## Dissecting the Demo
