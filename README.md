@@ -152,15 +152,17 @@ That is, I suspect, our future. Even if Clojure doesn't match people's preconcep
 
 If we allow that the argument made in the last section is plausible, and that Clojure is a valid, even inevitable direction for Web development, then an obvious question presents itself: why are people using other things instead? 
 
-Were choosing Clojure simply a matter of learing its syntax, and learning how to think in terms of functions and immutable data vs. variables and objects, then I think the transition to Clojure would be faster and easier than it has been. This is not the case, though. The [Figwheel documentation](https://figwheel.org/docs/getting_help.html) says some things about this that ring true to me:
+Were choosing Clojure simply a matter of learing its syntax, and learning how to think in terms of functions and immutable data vs. thinking about variables and objects, then I think the transition to Clojure would be faster and easier than it has been. This is not the case, though. The [Figwheel documentation](https://figwheel.org/docs/getting_help.html) says some things about this that ring true to me:
 
 *"First, folks try to learn too many things in parallel. They try to learn functional programming, persistent datastructures, ClojureScript tooling, hot reloading, using a browser connected REPL, Reactjs, a ClojureScript React wrapper like Reagent, Javascript, Ring(ie. Rack for Clojure), setting up a Clojure webserver all at the same time.*
 
 *This layering strategy may be an efficient way to learn when one is learning an imperative programming language like Python, Ruby or JavaScript. It becomes a losing strategy when you start to work with ClojureScript. The biggest reason for this is that the language itself is significantly different than these imperative languages. There are enough differences that you will find it difficult to associate these new patterns with the programming patterns that you are accustomed to. This unfamiliarity is easily compounded when you then add several other paradigm breakers like Reactjs and hot reloading to the mix."*
 
-To that I would add that the Clojure novice will need to deal with Emacs, Marmalade, Cider, and Leiningen to even get to the point where the things mentioned by Figwheel are an issue. There are myriad little pitfalls involved with even getting these things up-and-running. I had to deal with the fact that my distribution's package manager offered only version 24 of Emacs, which simply does not support Marmalade. 
+To this depressing narrative I would add that the Clojure novice will need to deal with Emacs, Marmalade, Cider, and Leiningen to even get to the point where the things mentioned by the Figwheel site are even an issue. There are myriad little pitfalls involved with even getting these things up-and-running. I had to deal with the fact that my distribution's package manager offered only version 24 of Emacs, for example, which simply does not support Marmalade. 
 
-There are ways around such problems, but the associated time costs add up quickly and are offset against time actually spent learning Clojure itself. Figwheel offers a survival strategy which is probably not ideal for the more practically-minded among us:
+There are ways around such problems, but the associated time costs add up quickly and are offset against time actually spent learning Clojure itself. 
+
+The Figwheel docs offers a survival strategy which is probably not ideal for the more practically-minded among us:
 
 *"The solution is to keep things as simple as possible when you start out. Choose finite challenges like learning enough of the ClojureScript language to where you can express complex things before you attempt to manipulate a web page. From there attempt to simply manipuate the DOM with the goog.dom API. Once you have a handle on that start exploring React and how to use sablono to create a dynamic web site. Then start exploring Clojure and create a simple webserver with Ring."*
 
