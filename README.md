@@ -1,8 +1,8 @@
 # Porpus - A Minimalist Leiningen Template for Web Development
-* Server-Driven...
-* But ClojureScript enabled for when you need it
 * Suspicious of dependencies; HTTP is the framework...
 * But "batteries" _are_ included
+* Server-Driven...
+* But ClojureScript enabled for when you need it
 * Tight development loop
 * __A quick path to making what you want to make__
 
