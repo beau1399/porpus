@@ -46,6 +46,8 @@ Finally, a couple of key Web capabilites are evident in this basic demo: __typed
 
 ## Dissecting the Demo
 
+### Page "buttontest"
+
 If you worked through the demo in the last section, you have a file on your computer at ~/pptest/src/clj/pptest/handler.clj. This file (or some Clojure file refactored out of it) is where I anticipate most of your development will take place, so taking it apart is a good next step in explaining Porpus.
 
 Skipping past some boilerplate stuff that won't change much, we find the following around line 25:
@@ -79,6 +81,8 @@ Between the tag name keyword and the inner HTML expression can come a hash map c
     (defn ^:export greet [] (js/alert "Howdy!"))
 
 You can add functions to this file and call them using similar syntax to what's seen in the button's ":onclick" handler. Not much other than the function name and the specific event being handled (":onchange" is another important one) will need to be changed. It is important to include the "^:export" metadata item on your functions; otherwise, name mangling in the production build will prevent the function from being found by the runtime script engine of the browser.
+
+### Page "parmtest"
 
 ## Porpus Design in Depth
 
