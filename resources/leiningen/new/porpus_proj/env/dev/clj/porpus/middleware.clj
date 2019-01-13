@@ -6,16 +6,10 @@
               [prone.middleware :refer [wrap-exceptions]]
               [ring.middleware.reload :refer [wrap-reload]]
               [ring.middleware.defaults :refer [site-defaults wrap-defaults]]))
-
 (def middleware
-  [#(wrap-defaults % (assoc site-defaults :session false))
+   [#(wrap-defaults % (assoc-in (assoc site-defaults :session false ) [:security :anti-forgery] false ))
    wrap-exceptions
    wrap-reload
-
    rrc/coerce-exceptions-middleware
    rrc/coerce-request-middleware
-   rrc/coerce-response-middleware
-
-
-
-])
+   rrc/coerce-response-middleware])
