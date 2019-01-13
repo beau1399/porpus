@@ -197,3 +197,5 @@ Figwheel.org - trying to learn too much
 
 TODO - FORM POST EXAMPLE IN THE INTEREST OF BATTERIES INCLUDED
 TODO - request and session params to handler fucntions
+
+there are drawbacks to things like react anyway; people cite scalability of foisting shit on the client; but scalabilit can be defined as the ability to address perf. probs by adding hardware. sounds more like something to be done on server side, to say nothing of varying JS implementations over which we have no control. and is the UX better? (sliding panels)
