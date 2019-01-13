@@ -4,7 +4,7 @@
 * Suspicious of dependencies; HTTP is the framework...
 * But "batteries" are nevertheless included
 * Tight development loop
-* __Friendly learning curve__
+* __A quick path to making what you want to make__
 
 ## Quick Start
 
@@ -57,6 +57,28 @@ Skipping past some boilerplate stuff that won't change much, we find the followi
          :headers {"Content-Type" "text/html"}
          :body (html5 (head)
 	   [:button {:onclick "pptest.core.greet()"} "Say hi"]  (include-js "/js/app.js"))})}}]
+	   
+What we see here is the Reitit route definition for page http://localhost:3449/buttontest. Such routes consist of a vector containing a route string ("/buttontest") and then a hash map that establishes how the route should be handled. 
+
+The first two key/value pairs are inherent to how one responds to a valid request for a Web page; the status to return is the integer value 200, and what's being sent in response is "text/html".
+
+After that, things get only marginally more complicated. There is the ":body" keyword, which tells Reitit that you're supplying the meat of the response you're wanting to serve up, followed by a call into [Hiccup](https://github.com/weavejester/hiccup) function "html5." It should thus be no surprise that Hiccup is a library that generates HTML5 strings from Clojure vectors. 
+
+The syntax of Hiccup is intuitive, and closely matches the syntax used by Reagent on the client side. The most basic example looks something like this:
+
+	[:span "Hello, world."]
+	
+So, the tag name goes into the leftmost position of the vector, as a Clojure keyword. The rightmost element in the vector is its inner HTML. Above this is just text, but nesting of HTML tags to any depth is, naturally, supported, e.g.:
+
+	[:div [:span "Hello, world."]]
+	
+Between the tag name keyword and the inner HTML expression can come a hash map containing the element's attributes. In the "/buttontest" route declaration, the button tag that gets generated has an ":onclick" value, is a little string of JavaScript that serves as a good example of how to interfact handler.clj with the client-side code in ~/pptest/src/cljs/pptest/core.cljs:
+
+    (ns pptest.core (:require [reitit.frontend :as reitit]))
+
+    (defn ^:export greet [] (js/alert "Howdy!"))
+
+You can add functions to this file and call them using similar syntax to what's seen in the button's ":onclick" handler. Not much other than the function name and the specific event being handled (":onchange" is another important one) will need to be changed. It is important to include the "^:export" metadata item on your functions; otherwise, name mangling in the production build will prevent the function from being found by the runtime script engine of the browser.
 
 ## Porpus Design in Depth
 
