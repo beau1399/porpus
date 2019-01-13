@@ -84,6 +84,19 @@ You can add functions to this file and call them using similar syntax to what's 
 
 ### Page "parmtest"
 
+The "/parmtest" route declaration is similar to that of "/buttontest", with some additional parameter-related features:
+
+     ["/parmtest"
+        {:get {
+	       :coercion reitit.coercion.spec/coercion
+               :parameters { :query  {:n int?} }
+               :handler (fn [{ {n :n} :params }]
+                    {:status 200
+                     :headers {"Content-Type" "text/html"}
+                     :body (html5 (head)
+		     	   [:span (str "Parameter is " n)]
+		        (include-js "/js/app.js"))})}}]
+
 ## Porpus Design in Depth
 
 Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
@@ -106,7 +119,9 @@ Over time this compromised engineering will only grow leakier in its abstraction
 
 In Clojure, we see this philosophy at work in the extra finger-tapping that is necessary to achieve something resembling assignment into a variable. That extra code also shunts what actually results into something within the constraints of functional programming. 
 
-These are good things. I am no Kernighan, Ritchie, or Hickey, but [even I, when I did try my hand at language creation](https://beauscode.blogspot.com/2013/02/language-and-development-tool-for.html#reenter) realized that sequential code ought to look and feel fundamentally different from parallel code- as it does in Clojure. That is, I suspect, our future.
+These are good things. I am no Kernighan, Ritchie, or Hickey, but [even I, when I did try my hand at language creation](https://beauscode.blogspot.com/2013/02/language-and-development-tool-for.html#reenter) realized that sequential code ought to look and feel fundamentally different from parallel code- as it does in Clojure. 
+
+That is, I suspect, our future. Even if Clojure doesn't match people's preconceptions of a "low-level language," I am convinced that it's a less awkward abstraction of today's hardware than many languages that do match those preconceptions.
 
 ### The Banality of Dumpster Diving
 
@@ -122,5 +137,4 @@ what if learning C meant also learning... CS education
 
 Tight dev loop
 Batteries included
-
-## Dissecting the Demo
+Figwheel.org - trying to learn too much
