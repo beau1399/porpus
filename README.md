@@ -62,8 +62,9 @@ Skipping past some boilerplate stuff that won't change much, we find the followi
 
 Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
 
-__1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.
-2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development__
+__1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.__
+
+__2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development__
 
 ### The Power of Clojure
 
