@@ -247,6 +247,8 @@ Paraphrasing, this advice tells us to learn a fair amount of syntax without atte
 
 In other words, prepare yourself to work brain-teasers in something resembling a VT-100 session for a good while before you even try and decide what your real toolset will look like. __This is all very solid advice in its own way, but reading it, is there any wonder so many people throw up their hands and just decide to keep writing dubious Java?__
 
+Perhaps the problem is that the people who understand why Clojure might be "the new C" are just too smart for their own good. When asked what development ought to look like, they cannot limit themselves to talking about Clojure, or immutability, or functional programming, but must muddy the waters 
+
 ### The Banality of Dumpster Diving
 
 How can this imposing list of things to learn be pared back? Unlike the Figwheel Web site, I do not recommend hiding away exclusively in the REPL for a prolonged period of time unless you really do (as they suggest) find that "fun." 
