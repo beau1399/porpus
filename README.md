@@ -3,9 +3,8 @@
 * But ClojureScript enabled for when you need it
 * Suspicious of dependencies; HTTP is the framework...
 * But "batteries" are nevertheless included
-* Developer-friendly:
-*  Tight development loop
-*  __Friendly learning curve__
+* Tight development loop
+* __Friendly learning curve__
 
 ## Quick Start
 
@@ -47,6 +46,18 @@ Finally, a couple of key Web capabilites are evident in this basic demo: __typed
 
 ## Dissecting the Demo
 
+If you worked through the demo in the last section, you have a file on your computer at ~/pptest/src/clj/pptest/handler.clj. This file (or some Clojure file refactored out of it) is where I anticipate most of your development will take place, so taking it apart is a good next step in explaining Porpus.
+
+Skipping past some boilerplate stuff that won't change much, we find the following around line 25:
+
+     ["/buttontest"
+        {:get {
+         :handler (fn [stuff]
+                    {:status 200
+                     :headers {"Content-Type" "text/html"}
+                     :body (html5 (head)[:button {:onclick "p_p_t.core.greet()"} "Say hi"]  (include-js "/js/app.js"))})}}]
+
+
 ## Porpus Design in Depth
 
 Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
@@ -64,14 +75,18 @@ What rings true to me about the statement that "Clojure is the new C," though, i
 
 Consider the computer you are probably reading this on. It probably has a CPU that uses things like branch prediction, register renaming engines, exquisitely complex caching mechanisms, and the like to present the carefully-crafted, somewhat leaky abstraction that it really is just a fast PDP-11. Running alongside this CPU is a GPU that much more closely resembles what computer engineers would have computer scientists working on nowadays if they had their druthers. 
 
-Over time this compromised engineering will only grow leakier in its abstractions, more prone to nasty surprises, and overall less sustainable. There is a need for the engineering of software to better harmonize with the engineering of hardware. 
+Over time this compromised engineering will only grow leakier in its abstractions, more prone to nasty surprises, and generally less sustainable. There is a need for the engineering of software to better harmonize with the engineering of hardware. Most obvious to me, __languages need to discourage programmers from coding at a fast PDP-11, and make more modern paradigms easier to implement.__
+
+In Clojure, we see this philosophy at work in the extra finger-tapping that is necessary to achieve something resembling assignment into a variable. That extra code also shunts what actually results into something within the constraints of functional programming. 
+
+These are good things. I am no Kernighan, Ritchie, or Hickey, but [even I, when I did try my hand at language creation](https://beauscode.blogspot.com/2013/02/language-and-development-tool-for.html#reenter) realized that sequential code ought to look and feel fundamentally different from parallel code- as it does in Clojure. That is, I suspect, our future.
 
 ### The Banality of Dumpster Diving
 
+So that's my take, at least, on why Clojure is what software developers need right now. 
 
-http://beauscode.blogspot.com/2013/02/language-and-development-tool-for.html
- inherent side effects like i/o
- less fundamental side effects like variable assignment
+Why aren't people using it? The people who get it -> nerd factor
+
 
 
 
