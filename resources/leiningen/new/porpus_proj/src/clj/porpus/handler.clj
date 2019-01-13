@@ -27,7 +27,7 @@
          :handler (fn [stuff]
                     {:status 200
                      :headers {"Content-Type" "text/html"}
-                     :body (html5 (head)[:button {:onclick "{{name}}.core.greet()"} "Say hi"]  (include-js "/js/app.js"))})}}]
+                     :body (html5 (head)[:button {:onclick "{{sanitized}}.core.greet()"} "Say hi"]  (include-js "/js/app.js"))})}}]
 
      ["/parmtest"
         {:get {
