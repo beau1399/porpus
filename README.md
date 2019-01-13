@@ -32,7 +32,7 @@ This section will give you a quick path to a Porpus Web site, and show you what 
 
 9. Browse to http://localhost:3449/buttontest and click the "Say hi" button. You will see an alert dialog.
 
-From this little demo, a few pieces of information about Porpus can be gleaned. First, note that most of the action takes place on the server side. Things like React, the single-page architecture, etc. are not a part of Porpus, at least not out of the box.
+From this little demo, a few pieces of information about Porpus can be gleaned. First, note that *most of the action takes place on the server side.* Things like React, the single-page architecture, etc. are not a part of Porpus, at least not out of the box.
 
 Second, realize that this server-centric design does not prevent scripting from happening, as evidenced by the (ClojureScript-driven) alert dialog seen in step 9. 
 
@@ -45,3 +45,4 @@ Porpus is designed to get your Clojure-based Web development efforts going as qu
 1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.
 2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development
 
+Expounding upon #1 above, one can start with the pretty tired old argument that homoiconicity, macros, and so on [make Lisp a better language than the ones that most people are using](http://www.paulgraham.com/avg.html). Truth and theory aside, 1) this argument has been slow to resonate with people actually writing code, and 2) there's a lot that can be added to it.
