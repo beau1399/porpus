@@ -158,8 +158,28 @@ Were choosing Clojure simply a matter of learing its syntax, and learning how to
 
 *This layering strategy may be an efficient way to learn when one is learning an imperative programming language like Python, Ruby or JavaScript. It becomes a losing strategy when you start to work with ClojureScript. The biggest reason for this is that the language itself is significantly different than these imperative languages. There are enough differences that you will find it difficult to associate these new patterns with the programming patterns that you are accustomed to. This unfamiliarity is easily compounded when you then add several other paradigm breakers like Reactjs and hot reloading to the mix."*
 
+To that I would add that the Clojure novice will need to deal with Emacs, Marmalade, Cider, and Leiningen to even get to the point where the things mentioned by Figwheel are an issue. There are myriad little pitfalls involved with even getting these things up-and-running. I had to deal with the fact that my distribution's package manager offered only version 24 of Emacs, which simply does not support Marmalade. 
 
-So that's my take, at least, on why Clojure is what software developers need right now. 
+There are ways around such problems, but the associated time costs add up quickly and are offset against time actually spent learning Clojure itself. Figwheel offers a survival strategy which is probably not ideal for the more practically-minded among us:
+
+*"The solution is to keep things as simple as possible when you start out. Choose finite challenges like learning enough of the ClojureScript language to where you can express complex things before you attempt to manipulate a web page. From there attempt to simply manipuate the DOM with the goog.dom API. Once you have a handle on that start exploring React and how to use sablono to create a dynamic web site. Then start exploring Clojure and create a simple webserver with Ring."*
+
+Paraphrasing, this advice tells us to learn a fair amount of syntax without attempting a practical application of it. Then, throw these four libraries into the mix and you'll get to make a "simple webserver." Even more depressing is the segue into this: 
+
+*"As developers, we become very accustomed to having tools set up just the way we like them. I’m very sympathetic to this.*
+
+*I however strongly advise that you not invest too much time trying to set up a sweet development environment, and rather invest that time into learning the ClojureScript language with a simple set of tools.*
+
+*The Clojure landscape currently has a diverse set of tools that is constantly in flux. As a result, it’s very difficult to suss out which ones will actually help you. If you spend a lot of time evaluating all these options it can become very frustrating. If you wait a while, and use simple tools you will have much more fun actually using the language itself and this experience will provide a foundation to make better tooling choices.*
+
+*If you are new Clojure and ClojureScript I’d advise that you start with a terminal REPL and a decent editor."*
+
+In other words, prepare yourself to work brain-teasers in something resembling a VT-100 session for a good while before you even try and decide what your real toolset will look like. __This is all very solid advice in its own way, but reading it, is there any wonder so many people throw up their hands and just decide to keep writing dubious Java?__
+
+Reading through this pastiche of 
+
+
+
 
 Why aren't people using it? The people who get it -> nerd factor
 
