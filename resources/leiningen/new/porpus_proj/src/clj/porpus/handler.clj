@@ -11,12 +11,6 @@
 
 (def store (memory/memory-store))
 
-(def mount-target
-  [:div#app
-   [:h2 "Welcome to {{name}}"]
-   [:p "please wait while Figwheel is waking up ..."]
-   [:p "(Check the js console for hints if nothing exсiting happens.)"]])
-
 (defn head []
   [:head
    [:meta {:charset "utf-8"}]
@@ -24,26 +18,10 @@
            :content "width=device-width, initial-scale=1"}]
    (include-css (if (env :dev) "/css/site.css" "/css/site.min.css"))])
 
-(defn loading-page []
-  (html5
-   (head)
-   [:body {:class "body-container"}
-    mount-target
-    [:button {:onclick "{{name}}.core.greet()"} "Say hi"]
-    (include-js "/js/app.js")]))
-
-(defn index-handler
-  [_request]
-  {:status 200
-   :headers {"Content-Type" "text/html"}
-   :body (loading-page)})
-
 (def app
   (reitit-ring/ring-handler
    (reitit-ring/router
-    [["/" {:get {:handler index-handler}}]
-     
-
+    [    
      ["/buttontest"
         {:get {
          :handler (fn [stuff]
@@ -59,33 +37,25 @@
                     {:status 200
                      :headers {"Content-Type" "text/html"}
                      :body (html5 (head)
-		     	   [:span (str "Parameter is" n)]
+		     	   [:span (str "Parameter is " n)]
 		        (include-js "/js/app.js"))})}}]
 
        ["/seshtest"
         {:get {
                :handler (fn [{session :session}]
                                    {:status 200 :headers {"Content-Type" "text/html"}
-                                    :session (assoc session :markuse (inc (:markuse session 400)) ); :cookies {:ring-session 1}
-                                    :body (html5 (head)[:body [:span (keys session)] [:span (str (:markuse session "~") (:authuser session "au") "!"
-				    )]])})}}]
+                                    :session (assoc session :markuse (inc (:markuse session 0)))
+                                    :body (html5 (head)[:body [:span (:markuse session 0)
+				    ]])})}}]
 
        ["/seshtest2"
         {:get {
                :handler (fn [{session :session}]
                                    {:status 200 :headers {"Content-Type" "text/html"}
-                                    :session (assoc session :markuse (inc (:markuse session 400)) )
-                                    :body (html5 (head)[:body [:span (keys session)] [:span (str (:markuse session "~") (:authuser session "au") "!"
-                                    )]])})}}]
-
-     
-
-
-     ["/items"
-      ["" {:get {:handler index-handler}}]
-      ["/:item-id" {:get {:handler index-handler
-                          :parameters {:path {:item-id int?}}}}]]
-     ["/about" {:get {:handler index-handler}}]]
+                                    :session (assoc session :markuse (inc (:markuse session 0)))
+                                    :body (html5 (head)[:body [:span (:markuse session 0) 
+                                    ]])})}}]
+     ]
      {:data {:middleware (concat [[wrap-session {:store store}]] middleware) }})
    (reitit-ring/routes
     (reitit-ring/create-resource-handler {:path "/" :root "/public"})
