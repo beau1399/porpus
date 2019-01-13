@@ -82,6 +82,15 @@ Between the tag name keyword and the inner HTML expression can come a hash map c
 
 You can add functions to this file and call them using similar syntax to what's seen in the button's ":onclick" handler. Not much other than the function name and the specific event being handled (":onchange" is another important one) will need to be changed. It is important to include the "^:export" metadata item on your functions; otherwise, name mangling in the production build will prevent the function from being found by the runtime script engine of the browser.
 
+Finally, the "(head)" function call deserves explanation. This call is repeated across all of the demo's routes, and it abstracts away some unexciting things like character set, viewport, and the inclusion of the proper (minimized vs. full) version of the site CSS file. This is done using the same Hiccup syntax that's used to generate the rest of the response body:
+
+     (defn head []
+       [:head
+        [:meta {:charset "utf-8"}]
+        [:meta {:name "viewport"
+                :content "width=device-width, initial-scale=1"}]
+        (include-css (if (env :dev) "/css/site.css" "/css/site.min.css")
+
 ### Page "parmtest"
 
 The "/parmtest" route declaration is similar to that of "/buttontest", with some additional parameter-related features:
@@ -96,6 +105,12 @@ The "/parmtest" route declaration is similar to that of "/buttontest", with some
                      :body (html5 (head)
 		     	   [:span (str "Parameter is " n)]
 		        (include-js "/js/app.js"))})}}]
+			
+The "coercion" key/value pair is new. As a concept, "coercion" refers to the translation of querystring parameters, which are freeform text, into values meeting the more strongly typed needs of a Web application. The "coercion" key/value pair seen in the snippet above simply brings in the Reitit coercion library that's included in the Porpus development stack out-of-the-box, and can generally be repeated without any special attention for any route in need of parameter coercion.
+
+The next key/value pair establishes what this particular route expects parameter-wise. First, we are relying on query-based parameters, as denoted by the ":query" keyword; ":body" would be another option here, if we were using a POST request.
+
+The ":query" keyword is tied to a nested map consisting of a name "n", followed by a validation function (Clojure's "int?" predicate). 
 
 ## Porpus Design in Depth
 
