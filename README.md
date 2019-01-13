@@ -122,6 +122,37 @@ Beyond that, little new remains to explain other than how the handler function's
      
 and the declaration above will place the value ("value of the parameter" above, an integer when the route is correctly used) into handler function parameter "n". This handler function parameter is inserted into a span in the response body, to achieve the effect seen in the demo.
 
+## Pages "seshtest" and "seshtest2"
+
+The route for "/seshtest" is found after the one for "/parmtest" and looks like this:
+
+     ["/seshtest"
+        {:get {:handler (fn [{session :session}]
+                              {:status 200 :headers {"Content-Type" "text/html"}
+                               :session (assoc session :markuse (inc (:markuse session 0)))
+                               :body (html5 (head)[:body [:span (:markuse session 0)]])})}}]
+
+First, take note of the parameter list for the handler function. Here, destructuring is used to extract the value of key ":session" of the request object into a parameter called "session". This itself is a hash map, and the key used for the incrementing counter evident on "seshtest" and "seshtest2" is named "markuse".
+
+The new value of the session after the request is responded to must be included in the map returned by the handler function:
+
+     :session (assoc session :markuse (inc (:markuse session 0)))
+     
+In pseduocode, this line says "return a session map with :markuse set to 1 plus its value in the parameter session, or 1 plus 0 if :markuse is absent from the parameter session." Within the HTML body of the response, the value of :markuse is displayed, once again substituting 0 for the absent value:
+
+     [:span (:markuse session 0)]
+
+These session mechanics could hardly be simpler. Note, though, that there are a few things in handler.clj that exist to achieve this seamless developer experience. These shouldn't require much consideration, but they are necessary because of a key aspect of Reitit: the middleware stack is constructed on a per-route basis. So, by default, the session store associated with one Reitit route won't be the store associated with another. 
+
+This is addressed by creating a single session store, using the following line of code:
+
+     (def store (memory/memory-store))
+     
+Much farther down in handler.clj, this is integrated into the middleware of the Reitit route map.
+
+## Page "formtest"
+
+
 ## Porpus Design in Depth
 
 Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
