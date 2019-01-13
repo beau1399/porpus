@@ -2,7 +2,10 @@
 * Server-Driven
 * ClojureScript enabled for when you need it
 * Suspicious of dependencies
-* Built around the basics; HTTP is the framework
+* Built around the basics; HTTP is the framework...
+* But "batteries" are nevertheless included
+* Tight development loop
+* __Friendly learning curve__
 
 ## Quick Start
 
@@ -42,11 +45,25 @@ Second, realize that this server-centric design does not prevent scripting from 
 
 Finally, a couple of key Web capabilites are evident in this basic demo: __typed querystring parameters__ and __session persistence__.
 
-## Porpus In Depth
+## Dissecting the Demo
 
-Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and a couple of competing factors I perceived in my own efforts to develop in the language:
+## Porpus Design in Depth
 
-1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.
-2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development
+Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
+
+__1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.
+2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development__
+
+### The Power of Clojure
 
 Expounding upon #1 above, one can start with the pretty tired old argument that homoiconicity, macros, and so on [make Lisp a better language than the ones that most people are using](http://www.paulgraham.com/avg.html). Truth and theory aside, 1) this argument has been slow to resonate with people actually writing code, and 2) there's a lot that can be added to it.
+
+In fact, Robert C. Martin has gone so far as to claim that ["Clojure is the new C"](https://www.infoq.com/presentations/clojure-c). What does this mean? In his talk, Martin focused a lot on the disciplined, terse, symbol-heavy nature of the syntax of both languages, and there are plenty of people out there who'll tell you that he's "missing the point."
+
+What rings true to me about the statement that "Clojure is the new C," though, is the glaring *need* for a new version of what C once was, and the potential that this might be filled by something like Clojure. The days when C was a useful model of how typical hardware actually operated are behind us- hence another provactively-titled link telling us that ["C is no longer a low level language](https://queue.acm.org/detail.cfm?id=3212479), subtitled "your computer is not a fast PDP-11."
+
+Consider the computer you are probably reading this on. It probably has a CPU that uses things like branch prediction, register renaming engines, exquisitely complex caching mechanisms, and the like to present the carefully-crafted, somewhat leaky abstraction that it really is just a fast PDP-11. Running alongside this CPU is a GPU that much more closely resembles what computer engineers would have computer scientists working on nowadays if they had their druthers. 
+
+Over time this compromised engineering will only grow leakier in its abstractions, more prone to nasty surprises, and overall less sustainable. There is a need for the engineering of software to better harmonize with the engineering of hardware. 
+
+### The Banality of Dumpster Diving
