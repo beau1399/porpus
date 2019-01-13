@@ -6,6 +6,8 @@
 * Tight development loop
 * __A quick path to making what you want to make__
 
+This document begins by describing how to generate a Porpus site, and then explains how to do the most basic Web development tasks for such a site. It is intended to serve as a self-contained tutorial that will have you doing Web development in Clojure very quickly, and it assumes only a basic understanding of how Web applications in general work and knowledge of basic Clojure data structures and function call syntax.
+
 ## Quick Start
 
 This section will give you a quick path to a Porpus Web site, and show you what Porpus is and isn't. If you prefer to read about the design and intent of Porpus in greater depth, skip to the third major section of this document ("Porpus Design in Depth") and read that first. Otherwise, go ahead and follow these steps:
@@ -28,7 +30,7 @@ This section will give you a quick path to a Porpus Web site, and show you what 
 	cd pptest
 	lein figwheel
 
-5. Browse to http://localhost:3449/seshtest and refresh a few times. You will see an incrementing counter on the page built around your session.
+5. Out-of-the-box, a Porpus site can respond to a few URLs designed to be examples for you. Browse to http://localhost:3449/seshtest and refresh a few times. You will see an incrementing counter on the page built around your session.
 
 6. Browse to http://localhost:3449/seshtest2. You will see the same counter value as on the last page, plus one.
 
@@ -62,9 +64,11 @@ Skipping past some boilerplate stuff that won't change much, we find the followi
 	   
 What we see here is the Reitit route definition for page http://localhost:3449/buttontest. Such routes consist of a vector containing a route string ("/buttontest") and then a hash map that establishes how the route should be handled. 
 
-The first two key/value pairs are inherent to how one responds to a valid request for a Web page; the status to return is the integer value 200, and what's being sent in response is "text/html".
+The outer hash map for the route ties keyword ":get" (the HTTP verb supported here) to a nested map. In this simple example, the nested map need only define a value for keyword ":handler", which is tasked with generating and returning yet another map that gives all of the data about the HTTP response.
 
-After that, things get only marginally more complicated. There is the ":body" keyword, which tells Reitit that you're supplying the meat of the response you're wanting to serve up, followed by a call into [Hiccup](https://github.com/weavejester/hiccup) function "html5." It should thus be no surprise that Hiccup is a library that generates HTML5 strings from Clojure vectors. 
+The first two key/value pairs of this latest map are inherent to how one responds to a valid request for a Web page; the status to return is the integer value 200, and what's being sent in response is "text/html".
+
+After that, things get only marginally more complicated. The value attached to the ":body" keyword supplies the meat of the response you're wanting to serve up, which is all contained with a call into [Hiccup](https://github.com/weavejester/hiccup) function "html5." It should thus be no surprise that Hiccup is a library that generates HTML5 strings from Clojure vectors. 
 
 The syntax of Hiccup is intuitive, and closely matches the syntax used by Reagent on the client side. The most basic example looks something like this:
 
@@ -81,6 +85,8 @@ Between the tag name keyword and the inner HTML expression can come a hash map c
     (defn ^:export greet [] (js/alert "Howdy!"))
 
 You can add functions to this file and call them using similar syntax to what's seen in the button's ":onclick" handler. Not much other than the function name and the specific event being handled (":onchange" is another important one) will need to be changed. It is important to include the "^:export" metadata item on your functions; otherwise, name mangling in the production build will prevent the function from being found by the runtime script engine of the browser.
+
+At the end of the body definition is a call to function "include-js". This brings in "app.js", which at runtime will hold an amalgamation of "core.js" and all of the other things necessary to bridge the gap between your ClojureScript and the JavaScript the browser can actually execute. This is at the end of the body definition so that it can be relied on to load after the page markup has loaded.
 
 Finally, the "(head)" function call deserves explanation. This call is repeated across all of the demo's routes, and it abstracts away some unexciting things like character set, viewport, and the inclusion of the proper (minimized vs. full) version of the site CSS file. This is done using the same Hiccup syntax that's used to generate the rest of the response body:
 
@@ -108,9 +114,13 @@ The "/parmtest" route declaration is similar to that of "/buttontest", with some
 			
 The "coercion" key/value pair is new. As a concept, "coercion" refers to the translation of querystring parameters, which are freeform text, into values meeting the more strongly typed needs of a Web application. The "coercion" key/value pair seen in the snippet above simply brings in the Reitit coercion library that's included in the Porpus development stack out-of-the-box, and can generally be repeated without any special attention for any route in need of parameter coercion.
 
-The next key/value pair establishes what this particular route expects parameter-wise. First, we are relying on query-based parameters, as denoted by the ":query" keyword; ":body" would be another option here, if we were using a POST request.
+The next key/value pair establishes what this particular route expects parameter-wise. First, we are relying on query-based parameters, as denoted by the ":query" keyword; ":body" would be another option here, if we were using a POST request. The ":query" keyword is tied to a nested map consisting of a name "n", followed by a validation function (Clojure's "int?" predicate). 
 
-The ":query" keyword is tied to a nested map consisting of a name "n", followed by a validation function (Clojure's "int?" predicate). 
+Beyond that, little new remains to explain other than how the handler function's parameter list must be constructed. It is a destructuring map that pulls the value attached to keyword ":n" in the ":params" map of the object passed to all requests. In other words, given the ":parameters" declaration seen above it, we can expect that the handler function will be passed a map that takes, in part, the form 
+    
+     {:params {:n "value of the parameter"}}
+     
+and the declaration above will place the value ("value of the parameter" above, an integer when the route is correctly used) into handler function parameter "n". This handler function parameter is inserted into a span in the response body, to achieve the effect seen in the demo.
 
 ## Porpus Design in Depth
 
@@ -140,6 +150,15 @@ That is, I suspect, our future. Even if Clojure doesn't match people's preconcep
 
 ### The Banality of Dumpster Diving
 
+If we allow that the argument made in the last section is plausible, and that Clojure is a valid, even inevitable direction for Web development, then an obvious question presents itself: why are people using other things instead? 
+
+Were choosing Clojure simply a matter of learing its syntax, and learning how to think in terms of functions and immutable data vs. variables and objects, then I think the transition to Clojure would be faster and easier than it has been. This is not the case, though. The [Figwheel documentation](https://figwheel.org/docs/getting_help.html) says some things about this that ring true to me:
+
+*"First, folks try to learn too many things in parallel. They try to learn functional programming, persistent datastructures, ClojureScript tooling, hot reloading, using a browser connected REPL, Reactjs, a ClojureScript React wrapper like Reagent, Javascript, Ring(ie. Rack for Clojure), setting up a Clojure webserver all at the same time.*
+
+*This layering strategy may be an efficient way to learn when one is learning an imperative programming language like Python, Ruby or JavaScript. It becomes a losing strategy when you start to work with ClojureScript. The biggest reason for this is that the language itself is significantly different than these imperative languages. There are enough differences that you will find it difficult to associate these new patterns with the programming patterns that you are accustomed to. This unfamiliarity is easily compounded when you then add several other paradigm breakers like Reactjs and hot reloading to the mix."*
+
+
 So that's my take, at least, on why Clojure is what software developers need right now. 
 
 Why aren't people using it? The people who get it -> nerd factor
@@ -153,3 +172,6 @@ what if learning C meant also learning... CS education
 Tight dev loop
 Batteries included
 Figwheel.org - trying to learn too much
+
+TODO - FORM POST EXAMPLE IN THE INTEREST OF BATTERIES INCLUDED
+TODO - request and session params to handler fucntions
