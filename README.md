@@ -34,9 +34,9 @@ This section will give you a quick path to a Porpus Web site, and show you what 
 
 From this little demo, a few pieces of information about Porpus can be gleaned. First, note that __most of the action takes place on the server side.__ Things like React, the single-page architecture, etc. are not a part of Porpus, at least not out of the box.
 
-Second, realize that this server-centric design does not prevent scripting from happening, as evidenced by the (ClojureScript-driven) alert dialog seen in step 9. 
+Second, realize that this server-centric design does not prevent scripting from happening, as evidenced by the (__ClojureScript-driven__) alert dialog seen in step 9. 
 
-Finally, a couple of key Web capabilites are evident in this basic demo: typed querystring parameters and session persistence.
+Finally, a couple of key Web capabilites are evident in this basic demo: __typed querystring parameters__ and __session persistence__.
 
 ## Porpus In Depth
 
