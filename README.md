@@ -18,25 +18,25 @@ This section will give you a quick path to a Porpus Web site, and show you what 
 
 1. Get the Porpus repository onto your system
 
-	cd ~
-	mkdir porpus
-	cd porpus
-	git init
-	git pull https://github.com/beau1399/porpus.git
+     cd ~
+     mkdir porpus
+     cd porpus
+     git init
+     git pull https://github.com/beau1399/porpus.git
 
 2. Add Porpus to your Leiningen setup
 
-	lein install
+     lein install
 
 3. Make a Porpus projct
 
-	cd ~
-	lein new porpus-proj pptest
+     cd ~
+     lein new porpus-proj pptest
 
 4. Run your project in debugging mode
 
-	cd pptest
-	lein figwheel
+     cd pptest
+     lein figwheel
 
 5. Out-of-the-box, a Porpus site can respond to a few URLs designed to be examples for you. Browse to http://localhost:3449/seshtest and refresh a few times. You will see an incrementing counter on the page built around your session.
 
