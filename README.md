@@ -16,7 +16,7 @@ This document begins by describing how to generate a Porpus site, which comes co
 
 This section will give you a quick path to a Porpus Web site, and show you what Porpus is and isn't. If you prefer to read about the design and intent of Porpus in greater depth, skip to the third major section of this document ("Porpus Design in Depth") and read that first. Otherwise, go ahead and follow these steps:
 
-###Get the Porpus repository onto your system
+#### Get the Porpus repository onto your system
 
      cd ~
      mkdir porpus
@@ -24,16 +24,16 @@ This section will give you a quick path to a Porpus Web site, and show you what 
      git init
      git pull https://github.com/beau1399/porpus.git
 
-### Add Porpus to your Leiningen setup
+#### Add Porpus to your Leiningen setup
 
      lein install
 
-### Make a Porpus projct
+#### Make a Porpus projct
 
      cd ~
      lein new porpus-proj pptest
 
-### Run your project in debugging mode
+#### Run your project in debugging mode
 
      cd pptest
      lein figwheel
