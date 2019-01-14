@@ -10,13 +10,6 @@ Porpus:
 * Has a tight development loop
 * __Offers a quick path to making what you want to make__
 
-Porpus includes:
-* Reitit for routing and parameter coercion
-* Hiccup for HTML generation
-* Figwheel and Ring for reloading
-* Out-of-the-box examples of all of it
-* Not much else!
-
 This document begins by describing how to generate a Porpus site, which comes complete with examples of how to do basic Web development tasks for you to clone and extend. This is intended to serve as a self-contained tutorial that will have you doing Web development quickly. It assumes only a basic understanding of how Web applications in general work, along with knowledge of basic Clojure data structures and function call syntax.
 
 ## Quick Start
