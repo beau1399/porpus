@@ -200,11 +200,11 @@ A new key/value pair in the destructured parameter declaration is "ip." This _is
 
 What you see here grew pretty quickly out of some specific needs I had and the lack of a template that matched them. 
 
-The __Reagent template__ includes many of the components used to build Porpus (Reitit, Ring, etc.) but also presented some obstacles. In particular, it lacked out-of-the-box features friendly to server-centric development, such as parameter coercion and cross-page session persistence.
+The __Reagent template__ includes many of the components used to build Porpus (Reitit, Ring, etc.) but also has some drawbacks. In particular, it lacks out-of-the-box features friendly to server-centric development, such as parameter coercion and cross-page session persistence.
 
-The __Compojure template__ is more server-centric, but I was wary of the fact that the generated project didn't include a single ClojureScript file. No doubt there is a way to incorporate ClojureScript into a Compojure project, but if I am going to have to do this for every such project, I figured, why not just make my own template?
+The __Compojure template__ is more server-centric, but I am wary of the fact that the generated project doesn't include a single ClojureScript file. No doubt there is a way to incorporate ClojureScript into a Compojure project, but if I am going to have to do this for every such project, I decided, why not just make my own template?
 
-One design decision I faced was whether or not I should include Reagent (a React wrapper) in my template. Ultimately, __I decided not to include Reagent__ in the default Porpus development stack. Though I perceive several good arguments for including React in a new project, in each case I was able to come up with a good counterargument. 
+One design decision I faced in making Porpus was whether or not I should include Reagent (a React wrapper) in my template. Ultimately, __I decided not to include Reagent__ in the default Porpus development stack. Though there are good arguments for including React in a new project, in each case I was able to come up with a good counterargument. 
 
 I do not pretend that these counterarguments will apply to every developer and every project. In fact, if you're going to use React, I strongly feel that you might as well do it via Reagent. Good usage of React relies on immutability, and if you're using a language other than Clojure this will be something extra to wory about. In Clojure, it just happens. That said...
 
@@ -214,7 +214,10 @@ __I am skeptical of the argument that client-heavy sites scale better.__ Each ne
 
 __Clojure offers a steep enough learning curve without React.__ The world needs Clojure. Even setting aside [tired but true arguments about expressiveness](http://www.paulgraham.com/avg.html), the curly brace languages we've been so comfortable with [no longer model what computer engineers can deliver](https://queue.acm.org/detail.cfm?id=3212479). Clojure [is as close to the answer](https://www.infoq.com/presentations/clojure-c) as anything else out there. But it needs to be accessible to the people who'd otherwise keep purloining curly brace code on us. The closer we can make the development experience to [PHP for Dummies](https://www.dummies.com/programming/php/), the sooner the computers of today will start approaching their potential.
 
-__Full Dose__
+__I get a full dose of React as part of my work.__ This is a somewhat personal decision, but I do not feel the need to use React in my personaly projects absent a really compelling need. The tide of professional development is dragging us toward React anyway, and it doesn't need an assist from me. If I discover a need for React in my personal projects, or in the work I do as a freelancer, I have no doubt that the things I have been compelled to do for money will prepare me to recognize and act on that need.
+
+All of that said, I want to reiterate that I am not anti-React. Reagent is almost certainly the state-of-the-art when it comes to React and "you kids" are welcome on my lawn any day of the week.
+
 
 
 
