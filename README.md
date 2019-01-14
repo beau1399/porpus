@@ -1,6 +1,6 @@
 # Porpus - A Minimalist Leiningen Template for Web Development in Clojure and ClojureScript
 
-Porpus lies somewhere between the client-heavy paradigm of Reagent and the server-heavy paradigm of Compojure. I couldn't find a template that hit this sweet spot, so I tried to make one.
+Porpus lies somewhere between the client-heavy paradigm of Reagent and the server-heavy paradigm of Compojure. I couldn't find a template that hit this sweet spot for me, so I tried to make one.
 
 Porpus:
 * Is suspicious of dependencies; HTTP is the framework...
