@@ -198,7 +198,7 @@ A new key/value pair in the destructured parameter declaration is "ip." This _is
 
 ## Porpus Design in Depth
 
-What you see here grew pretty quickly out of some specific needs I had and the lack of a template that matched them. 
+What you see here grew pretty quickly out of some specific needs I had, and out of the lack of a template that matched them. 
 
 The __Reagent template__ includes many of the components used to build Porpus (Reitit, Ring, etc.) but also has some drawbacks. In particular, it lacks out-of-the-box features friendly to server-centric development, such as parameter coercion and cross-page session persistence.
 
