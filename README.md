@@ -1,16 +1,19 @@
-# Porpus - A Minimalist Leiningen Template for Web Development in Clojure
-* Suspicious of dependencies; HTTP is the framework...
-* But "batteries" _are_ included
-* Server-Driven...
-* But ClojureScript enabled for when you need it
-* Tight development loop
-* __A quick path to making what you want to make__
+# Porpus - A Minimalist Leiningen Template for Web Development in Clojure and ClojureScript
 
-More specfically:
+Porpus lies somewhere between the client-heavy paradigm of Reagent and the server-heavy paradigm of Compojure. I couldn't find a template that hit this sweet spot, so I tried to make one.
+
+Porpus:
+* Is suspicious of dependencies; HTTP is the framework...
+* But "batteries" _are_ included
+* Is server-Driven...
+* But ClojureScript-enabled for when you need it
+* Has a tight development loop
+* Offers __A quick path to making what you want to make__
+
+Porpus includes:
 * Reitit for routing and parameter coercion
-* Figwheel for ClojureScript reloading
-* Ring for Clojure reloading
 * Hiccup for HTML generation
+* Figwheel and Ring for reloading
 * Out-of-the-box examples of all of it
 * Not much else!
 
@@ -194,6 +197,43 @@ Note that session is not included in the response here. This is acceptable since
 A new key/value pair in the destructured parameter declaration is "ip." This _is_ parroted back in the HTML returned by the POST handler, and is mostly included just to show how one obtains the IP address within the Porpus ecosystem.
 
 ## Porpus Design in Depth
+
+What you see here grew pretty quickly out of some specific needs I had and the lack of a template that matched them. 
+
+The __Reagent template__ includes many of the components used to build Porpus (Reitit, Ring, etc.) but also presented some obstacles. In particular, it lacked out-of-the-box features friendly to server-centric development, such as parameter coercion and cross-page session persistence.
+
+The __Compojure template__ is more server-centric, but I was wary of the fact that the generated project didn't include a single ClojureScript file. No doubt there is a way to incorporate ClojureScript into a Compojure project, but if I am going to have to do this for every such project, I figured, why not just make my own template?
+
+One design decision I faced was whether or not I should include Reagent (a React wrapper) in my template. Ultimately, __I decided not to include Reagent__ in the default Porpus development stack. Though I perceive several good arguments for including React in a new project, in each case I was able to come up with a good counterargument. 
+
+I do not pretend that these counterarguments will apply to every developer and every project. In fact, if you're going to use React, I strongly feel that yxou might as well do it via Reagent. Good usage of React relies on immutability, and if you're using a language other than Clojure this will be something extra to wory about. In Clojure, it just happens. That said...
+
+__I didn't want a "rich" / lazy-loaded user interface.__ In my experience, these UIs tend to either shift around in disjointed fashion as they load and render, or they have to include extra placeholders to prevent that. The jerkiness and/or placeholders can extend over an unacceptably long period of time. This is not a performance problem to be addressed by speeding things up, but a sub-par architecural choice- even if a server-rendered page takes 10 seconds to load up, at least I know when it's loaded and where to put my finger down to follow a link.
+
+__I am skeptical of the argument that client-heavy sites scale better.__ Each new site user adds more client-side processing power, the argument goes, so a client-heavy site will scale naturally. What is "scalability," though? Is it not the ability to address performance problems by adding hardware? The developer has zero control over client-side hardware. He must rely on the user devices being performant, their JavaScript engines being optimal and compatible, and so on. I have more confidence in my ability to manage my Web servers than I have in the client side.
+
+__Clojure offers a steep enough learning curve without React.__ The world needs Clojure. Even setting aside [tired but true arguments about expressiveness](http://www.paulgraham.com/avg.html), the curly brace languages we've been so comfortable with [no longer model what computer engineers can deliver](https://queue.acm.org/detail.cfm?id=3212479). Clojure ["is as close to the answer"](https://www.infoq.com/presentations/clojure-c) as anything else out there. But it needs to be accessible to the people who'd otherwise keep purloining curly brace code on us. The closer we can make the development experience to [PHP for Dummies](https://www.dummies.com/programming/php/), the sooner the computers of today will start approaching their potential.
+
+__Full Dose__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
 
