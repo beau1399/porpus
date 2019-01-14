@@ -24,31 +24,31 @@ This section will give you a quick path to a Porpus Web site, and show you what 
      git init
      git pull https://github.com/beau1399/porpus.git
 
-###Add Porpus to your Leiningen setup
+### Add Porpus to your Leiningen setup
 
      lein install
 
-###Make a Porpus projct
+### Make a Porpus projct
 
      cd ~
      lein new porpus-proj pptest
 
-###Run your project in debugging mode
+### Run your project in debugging mode
 
      cd pptest
      lein figwheel
 
-5. Out-of-the-box, a Porpus site can respond to a few URLs designed to be examples for you. Browse to http://localhost:3449/seshtest and refresh a few times. You will see an incrementing counter on the page built around your session.
+Out-of-the-box, a Porpus site can respond to a few URLs designed to be examples for you. Browse to http://localhost:3449/seshtest and refresh a few times. You will see an incrementing counter on the page built around your session.
 
-6. Browse to http://localhost:3449/seshtest2. You will see the same counter value as on the last page, plus one.
+Browse to http://localhost:3449/seshtest2. You will see the same counter value as on the last page, plus one.
 
-7. Browse to http://localhost:3449/parmtest?n=99, replacing "99" with different integer values. You will see each integer echoed back to you in the page body.
+Browse to http://localhost:3449/parmtest?n=99, replacing "99" with different integer values. You will see each integer echoed back to you in the page body.
 
-8. Browse to http://localhost:3449/parmtest?n=string. You will get an error page, since the "n" parameter is expected to be an integer.
+Browse to http://localhost:3449/parmtest?n=string. You will get an error page, since the "n" parameter is expected to be an integer.
 
-9. Browse to http://localhost:3449/buttontest and click the "Say hi" button. You will see an alert dialog.
+Browse to http://localhost:3449/buttontest and click the "Say hi" button. You will see an alert dialog.
 
-10. Browse to http://localhost:3449:/formtest, enter some text into the text box, and press the "OK" button. The page will post back to the server and return another page that uses your input in a message.
+Browse to http://localhost:3449:/formtest, enter some text into the text box, and press the "OK" button. The page will post back to the server and return another page that uses your input in a message.
 
 From this little demo, a few pieces of information about Porpus can be gleaned. First, note that __most of the action takes place on the server side.__ Things like React, the single-page architecture, etc. are not a part of Porpus, at least not out of the box.
 
