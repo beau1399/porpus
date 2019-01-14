@@ -8,7 +8,7 @@ Porpus:
 * Is server-Driven...
 * But ClojureScript-enabled for when you need it
 * Has a tight development loop
-* Offers __A quick path to making what you want to make__
+* __Offers a quick path to making what you want to make__
 
 Porpus includes:
 * Reitit for routing and parameter coercion
