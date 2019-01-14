@@ -37,6 +37,8 @@ This section will give you a quick path to a Porpus Web site, and show you what 
 
      cd pptest
      lein figwheel
+     
+#### Use the demo site
 
 Out-of-the-box, a Porpus site can respond to a few URLs designed to be examples for you. Browse to http://localhost:3449/seshtest and refresh a few times. You will see an incrementing counter on the page built around your session.
 
