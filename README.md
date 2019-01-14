@@ -206,7 +206,7 @@ The __Compojure template__ is more server-centric, but I was wary of the fact th
 
 One design decision I faced was whether or not I should include Reagent (a React wrapper) in my template. Ultimately, __I decided not to include Reagent__ in the default Porpus development stack. Though I perceive several good arguments for including React in a new project, in each case I was able to come up with a good counterargument. 
 
-I do not pretend that these counterarguments will apply to every developer and every project. In fact, if you're going to use React, I strongly feel that yxou might as well do it via Reagent. Good usage of React relies on immutability, and if you're using a language other than Clojure this will be something extra to wory about. In Clojure, it just happens. That said...
+I do not pretend that these counterarguments will apply to every developer and every project. In fact, if you're going to use React, I strongly feel that you might as well do it via Reagent. Good usage of React relies on immutability, and if you're using a language other than Clojure this will be something extra to wory about. In Clojure, it just happens. That said...
 
 __I didn't want a "rich" / lazy-loaded user interface.__ In my experience, these UIs tend to either shift around in disjointed fashion as they load and render, or they have to include extra placeholders to prevent that. The jerkiness and/or placeholders can extend over an unacceptably long period of time. This is not a performance problem to be addressed by speeding things up, but a sub-par architecural choice- even if a server-rendered page takes 10 seconds to load up, at least I know when it's loaded and where to put my finger down to follow a link.
 
