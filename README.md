@@ -1,6 +1,6 @@
 # Porpus - A Minimalist Leiningen Template for Web Development in Clojure and ClojureScript
 
-Porpus lies somewhere between the client-heavy paradigm of Reagent and the server-heavy paradigm of Compojure. I couldn't find a template that hit this sweet spot for me, so I tried to make one.
+Porpus lies somewhere between the client-heavy paradigm of Reagent and the server-heavy paradigm of Compojure. I couldn't find a template that hit this sweet spot for me, so I made one.
 
 Porpus:
 * Is suspicious of dependencies; HTTP is the framework...
@@ -205,125 +205,8 @@ The __Compojure template__ is more server-centric, but I am wary of the fact tha
 
 One design decision I faced in making Porpus was whether or not I should include Reagent (a React wrapper) in my template. Ultimately, __I decided not to include Reagent__ in the default Porpus development stack. Though there are good arguments for including React in a new project, in each case I was able to come up with a good counterargument. 
 
-I do not pretend that these counterarguments will apply to every developer and every project. In fact, if you're going to use React, I strongly feel that you might as well do it via Reagent. Good usage of React relies on immutability, and if you're using a language other than Clojure this will be something extra to wory about. In Clojure, it just happens. That said...
+First, I don't accept the argument that doing everything on the client is scalable. I think a good definition of "scalability" is the ability to address performance problems by adding hardware. The developer has zero control over client-side hardware. He must rely on the user devices being performant, their JavaScript engines being optimal and compatible, and so on. 
 
-__I didn't want a "rich" / lazy-loaded user interface.__ In my experience, these UIs tend to either shift around in disjointed fashion as they load and render, or they have to include extra placeholders to prevent that. The jerkiness and/or placeholders can extend over an unacceptably long period of time. This is not a performance problem to be addressed by speeding things up, but a sub-par architecural choice- even if a server-rendered page takes 10 seconds to load up, at least I know when it's loaded and where to put my finger down to follow a link.
+Second, I do not generally want a "rich" / lazy loaded user interface. In my experience, these UIs tend to either shift around in disjointed fashion as they load and render, or they have to include extra placeholders to prevent that. The jerkiness and/or placeholders can extend over an unacceptably long period of time. This is not a performance problem to be addressed by speeding things up, but a sub-par architecural choice- even if a server-rendered page takes 10 seconds to load up, at least I know when it's loaded and where to put my finger down to follow a link.
 
-__I am skeptical of the argument that client-heavy sites scale better.__ Each new site user adds more client-side processing power, the argument goes, so a client-heavy site will scale naturally. What is "scalability," though? Is it not the ability to address performance problems by adding hardware? The developer has zero control over client-side hardware. He must rely on the user devices being performant, their JavaScript engines being optimal and compatible, and so on. I have more confidence in my ability to manage my Web servers than I have in the client side.
-
-__Clojure offers a steep enough learning curve without React.__ The world needs Clojure. Even setting aside [tired but true arguments about expressiveness](http://www.paulgraham.com/avg.html), the curly brace languages we've been so comfortable with [no longer model what computer engineers can deliver](https://queue.acm.org/detail.cfm?id=3212479). Clojure [is as close to the answer](https://www.infoq.com/presentations/clojure-c) as anything else out there. But it needs to be accessible to the people who'd otherwise keep purloining curly brace code on us. The closer we can make the development experience to [PHP for Dummies](https://www.dummies.com/programming/php/), the sooner the computers of today will start approaching their potential.
-
-__I get a full dose of React as part of my work.__ This is a somewhat personal decision, but I do not feel the need to use React in my personaly projects absent a really compelling need. The tide of professional development is dragging us toward React anyway, and it doesn't need an assist from me. If I discover a need for React in my personal projects, or in the work I do as a freelancer, I have no doubt that the things I have been compelled to do for money will prepare me to recognize and act on that need.
-
-All of that said, I want to reiterate that I am not anti-React. Reagent is almost certainly the state-of-the-art when it comes to React and "you kids" are welcome on my lawn any day of the week.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Porpus is designed to get your Clojure-based Web development efforts going as quickly and unobtrusively as possible. It grew out of my own needs, and out of a couple of competing factors I perceived in my own efforts to develop in the language:
-
-__1. Clojure is powerful, expressive, and works with (not against) real, contemporary hardware.__
-
-__2. Even for Lisp veterans, learning to apply Clojure is made difficult by the ecosystems most typical of Clojure Web development.__
-
-### The Power of Clojure
-
-Expanding on #1 above, one can start with the pretty tired old argument that homoiconicity, macros, and so on [make Lisp a better language than the ones that most people are using](http://www.paulgraham.com/avg.html). Truth and theory aside, 1) this argument has been slow to resonate with people actually writing code, and 2) there's a lot that can be added to it.
-
-In fact, Robert C. Martin has gone so far as to claim that ["Clojure is the new C"](https://www.infoq.com/presentations/clojure-c). What does this mean? In his talk, Martin focused a lot on the disciplined, terse, symbol-heavy nature of the syntax of both languages, and there are plenty of people out there who'll tell you that he's "missing the point."
-
-What rings true to me about the statement that "Clojure is the new C," though, is the glaring *need* for a new version of what C once was, and the potential that this might be filled by something like Clojure. The days when C was a useful model of how typical hardware actually operated are behind us- hence another provactively-titled link telling us that ["C is no longer a low level language](https://queue.acm.org/detail.cfm?id=3212479), subtitled "your computer is not a fast PDP-11."
-
-Consider the computer you are probably reading this on. It probably has a CPU that uses things like branch prediction, register renaming engines, exquisitely complex caching mechanisms, and the like to present the carefully-crafted, somewhat leaky abstraction that it really is just a fast PDP-11. Running alongside this CPU is a GPU that much more closely resembles what computer engineers would have computer scientists working on nowadays if they had their druthers. 
-
-Over time this compromised engineering will only grow leakier in its abstractions, more prone to nasty surprises, and generally less sustainable. There is a need for the engineering of software to better harmonize with the engineering of hardware. Most obvious to me, __languages need to discourage programmers from coding at a fast PDP-11, and make more modern paradigms easier to implement.__
-
-In Clojure, we see this philosophy at work in the extra finger-tapping that is necessary to achieve something resembling assignment into a variable. That extra code also shunts what actually results into something within the constraints of functional programming. 
-
-These are good things. I am no Kernighan, Ritchie, or Hickey, but [even I, when I did try my hand at language creation](https://beauscode.blogspot.com/2013/02/language-and-development-tool-for.html#reenter) realized that sequential code ought to look and feel fundamentally different from parallel code- as it does in Clojure. 
-
-That is, I suspect, our future. Even if Clojure doesn't match people's preconceptions of a "low-level language," I am convinced that it's a less awkward abstraction of today's hardware than many languages that do match those preconceptions.
-
-### The Clojure Learning Curve
-
-If we allow that the argument made in the last section is plausible, and that Clojure is a valid, even inevitable direction for Web development, then an obvious question presents itself: why are people using other things instead? 
-
-If choosing Clojure were simply a matter of learing its syntax, and learning how to think in terms of functions and immutable data instead of variables and objects, then I think the transition to Clojure would be faster and easier than it has been. This is not the case, though. The [Figwheel documentation](https://figwheel.org/docs/getting_help.html) says some things about this that ring true to me:
-
-*"First, folks try to learn too many things in parallel. They try to learn functional programming, persistent datastructures, ClojureScript tooling, hot reloading, using a browser connected REPL, Reactjs, a ClojureScript React wrapper like Reagent, Javascript, Ring(ie. Rack for Clojure), setting up a Clojure webserver all at the same time.*
-
-*This layering strategy may be an efficient way to learn when one is learning an imperative programming language like Python, Ruby or JavaScript. It becomes a losing strategy when you start to work with ClojureScript. The biggest reason for this is that the language itself is significantly different than these imperative languages. There are enough differences that you will find it difficult to associate these new patterns with the programming patterns that you are accustomed to. This unfamiliarity is easily compounded when you then add several other paradigm breakers like Reactjs and hot reloading to the mix."*
-
-To this depressing narrative I would add that the Clojure novice will need to deal with Emacs, Marmalade, Cider, and Leiningen to even get to the point where the things mentioned above are even an issue. There are myriad little pitfalls involved with even getting these things up-and-running, to say nothing of learning to use them. I had to deal with the fact that my distribution's package manager offered only version 24 of Emacs, for example, which simply does not support Marmalade. 
-
-There are ways around such problems, but the associated time costs add up quickly and are offset against time actually spent learning Clojure itself. 
-
-The Figwheel docs offers a survival strategy which is probably not ideal for the more practically-minded among us:
-
-*"The solution is to keep things as simple as possible when you start out. Choose finite challenges like learning enough of the ClojureScript language to where you can express complex things before you attempt to manipulate a web page. From there attempt to simply manipuate the DOM with the goog.dom API. Once you have a handle on that start exploring React and how to use sablono to create a dynamic web site. Then start exploring Clojure and create a simple webserver with Ring."*
-
-Paraphrasing, this advice tells us to learn a fair amount of syntax without attempting a practical application of it. Then, throw these four libraries into the mix and you'll get to make a "simple webserver." Even more depressing is the segue into this: 
-
-*"As developers, we become very accustomed to having tools set up just the way we like them. I’m very sympathetic to this.*
-
-*I however strongly advise that you not invest too much time trying to set up a sweet development environment, and rather invest that time into learning the ClojureScript language with a simple set of tools.*
-
-*The Clojure landscape currently has a diverse set of tools that is constantly in flux... If you spend a lot of time evaluating all these options it can become very frustrating. If you wait a while, and use simple tools you will have much more fun actually using the language itself and this experience will provide a foundation to make better tooling choices.*
-
-*If you are new Clojure and ClojureScript I’d advise that you start with a terminal REPL and a decent editor."*
-
-In other words, prepare yourself to work brain-teasers in something resembling a VT-100 session for a good while before you even try and decide what your real toolset will look like. __This is all very solid advice in its own way, but reading it, is there any wonder so many people throw up their hands and just decide to keep writing dubious Java?__
-
-Perhaps the problem is that the people who understand why Clojure might be "the new C" are just too smart for their own good. When asked what development ought to look like, they cannot limit themselves to talking about Clojure, or immutability, or functional programming, but must muddy the waters 
-
-### The Banality of Dumpster Diving
-
-How can this imposing list of things to learn be pared back? Unlike the Figwheel Web site, I do not recommend hiding away exclusively in the REPL for a prolonged period of time unless you really do (as they suggest) find that "fun." 
-
-To draw an analogy, waxing cars and paiting fences can segue neatly into winning a karate tournament in the movies, but I don't think such transitions are that easy in real life. In real life, if you want to win a karate tournament, you should probably start punching and kicking things well in advance of the first round of competition.
-
-More to the point, I followed the Figwheel people's recommendation for quite a while, dutifully constructing things like prime number generators and trampolining function pairs in the REPL for a few months. 
-
-So I do not suggest that learning Clojure ought to involve giving up on making something tangible and useful in a reasonable amount of time. 
-
-
-
-
-Why aren't people using it? The people who get it -> nerd factor
-
-
-
-
-
-what if learning C meant also learning... CS education
-
-Tight dev loop
-Batteries included
-Figwheel.org - trying to learn too much
-
-TODO - FORM POST EXAMPLE IN THE INTEREST OF BATTERIES INCLUDED
-TODO - request and session params to handler fucntions
-
-there are drawbacks to things like react anyway; people cite scalability of foisting shit on the client; but scalabilit can be defined as the ability to address perf. probs by adding hardware. sounds more like something to be done on server side, to say nothing of varying JS implementations over which we have no control. and is the UX better? (sliding panels)
-
-future directions / e.g.s
- anti-forgery
- auth
- db
+Finally, I get a full does of React in my full-time job. What I want to do with the work at hand is to write good Clojure. Toward that end, I have made an effort to minimize the number of novel things in play other than Clojure itself. I think many developers might benefit from that.
