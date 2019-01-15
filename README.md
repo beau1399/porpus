@@ -213,6 +213,8 @@ The __Reagent template__ includes many of the components used to build Porpus (R
 
 The __Compojure template__ is more server-centric, but I am wary of the fact that the generated project doesn't include a single ClojureScript file. No doubt there is a way to incorporate ClojureScript into a Compojure project, but if I am going to have to do this for every such project, I decided, why not just make my own template?
 
+#### Porpus and Reagent
+
 One design decision I faced in making Porpus was whether or not I should include Reagent (a React wrapper) in my template. Ultimately, __I decided not to include Reagent__ in the default Porpus development stack. Though there are good arguments for including React in a new project, in each case I was able to come up with a good counterargument. 
 
 First, I don't accept the argument that doing everything on the client is scalable. I think a good definition of "scalability" is the ability to address performance problems by adding hardware. The developer has zero control over client-side hardware. He must rely on the user devices being performant, their JavaScript engines being optimal and compatible, and so on. 
@@ -220,3 +222,7 @@ First, I don't accept the argument that doing everything on the client is scalab
 Second, I do not generally want a "rich" / lazy loaded user interface. In my experience, these UIs tend to either shift around in disjointed fashion as they load and render, or they have to include extra placeholders to prevent that. The jerkiness and/or placeholders can extend over an unacceptably long period of time. This is not a performance problem to be addressed by speeding things up, but a sub-par architecural choice- even if a server-rendered page takes 10 seconds to load up, at least I know when it's loaded and where to put my finger down to follow a link.
 
 Finally, I get a full does of React in my full-time job. What I want to do with the work at hand is to write good Clojure. Toward that end, I have made an effort to minimize the number of novel things in play other than Clojure itself. I think many developers might benefit from that.
+
+All that said, if you do want to make the sort of UI that React is so good at making, then I would suggest that Clojure / Reagent is the best development stack for doing that. So much of good React development consists of carefully striving for immutability. Even after you get into the habit of, say, returning new objects build using the "..." syntax in JavaScript, there are pitfalls that can introduce mutations in non-obvious ways. Clojure, on the other hand, builds immutability into the language. It is a natural fit for React development.
+
+Also, there is nothing in Porpus that's incompatible with React or Reagent. I have developed projects that make use of the Reagent libraries for narrowly-targeted purposes, and it is trivial to introduce Reagent into a Porpus project.
