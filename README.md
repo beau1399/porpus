@@ -38,17 +38,25 @@ This section will give you a quick path to a Porpus Web site, and show you what 
      cd pptest
      lein figwheel
      
-#### Use the demo site
+## Using the demo site
 
 Out-of-the-box, a Porpus site can respond to a few URLs designed to be examples for you. Browse to http://localhost:3449/seshtest and refresh a few times. You will see an incrementing counter on the page built around your session.
 
+#### Sessions
+
 Browse to http://localhost:3449/seshtest2. You will see the same counter value as on the last page, plus one.
+
+#### Querystring Parameters
 
 Browse to http://localhost:3449/parmtest?n=99, replacing "99" with different integer values. You will see each integer echoed back to you in the page body.
 
 Browse to http://localhost:3449/parmtest?n=string. You will get an error page, since the "n" parameter is expected to be an integer.
 
+#### Scripting
+
 Browse to http://localhost:3449/buttontest and click the "Say hi" button. You will see an alert dialog.
+
+#### Forms
 
 Browse to http://localhost:3449:/formtest, enter some text into the text box, and press the "OK" button. The page will post back to the server and return another page that uses your input in a message.
 
