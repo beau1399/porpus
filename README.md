@@ -226,3 +226,7 @@ Finally, I get a full does of React in my full-time job. What I want to do with 
 All that said, if you do want to make the sort of UI that React is so good at making, then I would suggest that Clojure / Reagent is the best development stack for doing that. So much of good React development consists of carefully striving for immutability. Even after you get into the habit of, say, returning new objects build using the "..." syntax in JavaScript, there are pitfalls that can introduce mutations in non-obvious ways. Clojure, on the other hand, builds immutability into the language. It is a natural fit for React development.
 
 Also, there is nothing in Porpus that's incompatible with React or Reagent. I have developed projects that make use of the Reagent libraries for narrowly-targeted purposes, and it is trivial to introduce Reagent into a Porpus project.
+
+## Licensing
+
+In order to facilitate the most widespread usage possible, the Porpus template is licensed under the [Unlicense](http://unlicense.org/). Generated projects are also licensed with this license by default, since GitHub is of the opinion that software without any license at all remains the copyrighted property of its creator(s). However, you are free to apply whatever license you want to code generated using the Porpus template.
