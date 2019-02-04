@@ -5,7 +5,7 @@ Porpus lies somewhere between the client-heavy paradigm of Reagent and the serve
 Porpus:
 * Is suspicious of dependencies; HTTP is the framework...
 * But "batteries" _are_ included
-* Is server-Driven...
+* Is server-driven...
 * But ClojureScript-enabled for when you need it
 * Has a tight development loop
 * __Offers a quick path to making what you want to make__
@@ -209,9 +209,9 @@ A new key/value pair in the destructured parameter declaration is "ip." This _is
 
 What you see here grew pretty quickly out of some specific needs I had, and out of the lack of a template that matched them. 
 
-The __Reagent template__ includes many of the components used to build Porpus (Reitit, Ring, etc.) but also has some drawbacks. In particular, it lacks out-of-the-box features friendly to server-centric development, such as parameter coercion and cross-page session persistence.
+The __Reagent template__ includes many of the components used to build Porpus (Reitit, Ring, etc.) but also has some drawbacks. As far as I can tell, it lacks out-of-the-box features friendly to server-centric development, such as parameter coercion and cross-page session persistence. Also, if you don't want to use React, Reagent is more than you need.
 
-The __Compojure template__ is more server-centric, but I am wary of the fact that the generated project doesn't include a single ClojureScript file. No doubt there is a way to incorporate ClojureScript into a Compojure project, but if I am going to have to do this for every such project, I decided, why not just make my own template?
+The __Compojure template__ is more server-centric, but I am wary of the fact that the generated project doesn't include a single ClojureScript file. No doubt there is a way to incorporate ClojureScript into a Compojure project, but if I am going to have to do this for every such project, I decided, why not just make my own template? Also, I found the Compojure documentation a bit sparse, although that may just reflect the fact that Compojure is a routing library and not much else. 
 
 #### Porpus and Reagent
 
