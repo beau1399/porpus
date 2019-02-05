@@ -216,7 +216,9 @@ The "lein" command will output the full paths to two .JAR files, one with "stand
 
      java -jar ~/pptest/target/pptest.jar
      
-By default, traffic will be served on port 3000. This can be changed by editing file ~/pptest/src/clj/pptest/server.clj, where the port number "3000" is evident near the bottom of the file.
+By default, traffic will be served on port 3000. This can be changed by editing file ~/pptest/src/clj/pptest/server.clj, where the port number "3000" is evident near the bottom of the file. 
+
+However, note that the default HTTP port, 80, may be off-limits, especially when running Jave without "sudo" in front. Configuring your Web server to pass traffic through from port 80 to port 3000 (or another high-numbered port) may therefore be a better long-term option.
 
 ## Porpus Design in Depth
 
