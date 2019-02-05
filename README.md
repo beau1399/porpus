@@ -205,6 +205,19 @@ Note that session is not included in the response here. This is acceptable since
 
 A new key/value pair in the destructured parameter declaration is "ip." This _is_ parroted back in the HTML returned by the POST handler, and is mostly included just to show how one obtains the IP address within the Porpus ecosystem.
 
+### Production Deployment
+
+Creating a production-ready .JAR file that contains an embedded Jetty HTTP server is easy. Returning to the "pptest" example, the commands to create this file are as shown below:
+
+     cd ~/pptest
+     lein uberjar
+     
+The "lein" command will output the full paths to two .JAR files, one with "standalone" in the name and another without. The latter file can be passed to Java for execution thus:
+
+     java -jar ~/pptest/target/pptest.jar
+     
+By default, traffic will be served on port 3000. This can be changed by editing file ~/pptest/src/clj/pptest/server.clj, where the port number "3000" is evident near the bottom of the file.
+
 ## Porpus Design in Depth
 
 What you see here grew pretty quickly out of some specific needs I had, and out of the lack of a template that matched them. 
