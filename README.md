@@ -220,6 +220,10 @@ By default, traffic will be served on port 3000. This can be changed by editing 
 
 However, note that the default HTTP port, 80, may be off-limits, especially when running Jave without "sudo" in front. Configuring your Web server to pass traffic through from port 80 to port 3000 (or another high-numbered port) may therefore be a better long-term option.
 
+### Styles
+
+The demo is completely unstyled, however, it does contain code to bring in CSS file "site.css" (which will be automatically minified and brought in as "site.min.css" in a production build). This file is located in the "/resources/public/css" subfolder of the generated file structure, e.g. at "~/ppt/resources/public/css/site.css".
+
 ## Porpus Design in Depth
 
 What you see here grew pretty quickly out of some specific needs I had, and out of the lack of a template that matched them. 
